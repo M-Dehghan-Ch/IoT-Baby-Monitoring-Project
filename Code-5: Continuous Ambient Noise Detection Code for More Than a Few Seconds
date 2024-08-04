@@ -1,0 +1,39 @@
+const int sensorPin = A0; // پین ورودی برای میکروفون
+const int threshold = 500; // حد آستانه برای تشخیص صدا
+const int ledPin = 13; 
+
+int soundLevel; // متغیر برای ذخیره سطح صدا
+int duration = 0; // متغیر برای ذخیره مدت زمان صدای پیوسته
+bool ledState = false;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(sensorPin, INPUT); // پین ورودی را به عنوان ورودی تنظیم کنید
+  pinMode(ledPin, OUTPUT); // پین خروجی را به عنوان خروجی تنظیم کنید
+}
+
+void loop() {
+  soundLevel = analogRead(sensorPin); // خواندن سطح صدا را از میکروفون 
+  Serial.print("سطح صدا: ");
+  Serial.println(soundLevel);
+
+  if (soundLevel > threshold) { // اگر سطح صدا از حد آستانه بیشتر باشد
+    duration++; // مدت زمان را یک واحد افزایش دهید
+  } else {
+    duration = 0; // اگر سطح صدا کمتر از حد آستانه باشد، مدت زمان را صفر کنید
+  }
+
+  if (duration >= 5000) { // اگر مدت زمان به 10 ثانیه (10000 میلی ثانیه) برسد
+    ledState = true; // LED را روشن کنید
+    Serial.println("صدای پیوسته به مدت  ده ثانیه تشخیص داده شد! چراغ روشن شد. ");
+    duration = 0; // مدت زمان را صفر کنید
+  } else if (ledState && duration == 0) { // اگر LED روشن است و مدت زمان به صفر برسد
+    ledState = false; // LED را خاموش کنید
+    Serial.println("LED خاموش شد.");
+  }
+
+  digitalWrite(ledPin, ledState); // وضعیت LED را تنظیم کنید
+
+  delay(10); // 10 میلی ثانیه صبر کنید
+}
+
