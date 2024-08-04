@@ -1,0 +1,57 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial Node_Mcu_SoftSerial(D1,D2);  //RX, TX
+
+int data1, data2, data3, data4;
+float data5, data6, data7, data8;
+string data9, data10, data11, data12;
+
+void setup(){
+    serial.begin(57600);
+    Node_Mcu_SoftSerial.begin(9600);
+}
+
+void loop(){
+
+    data1 =800;
+    data2 = 900
+    data3 = 1000;
+    data4 = 10000;
+    data5 = 12.12345;
+    data6 = 123.1234;
+    data7 = 1234.123;
+    data8 = 12345.12;
+    data9 = "data9";
+    data10 = "data10";
+    data11 = "data11";
+    data12 = "data12";
+
+    Node_Mcu_SoftSerial.print(data1);
+    Node_Mcu_SoftSerial.print("A");
+    Node_Mcu_SoftSerial.print(data2);       
+    Node_Mcu_SoftSerial.print("B");
+    Node_Mcu_SoftSerial.print(data3);
+    Node_Mcu_SoftSerial.print("C");
+    Node_Mcu_SoftSerial.print(data4);
+    Node_Mcu_SoftSerial.print("D");
+    Node_Mcu_SoftSerial.print(data5, 5);
+    Node_Mcu_SoftSerial.print("E");
+    Node_Mcu_SoftSerial.print(data6, 4);
+    Node_Mcu_SoftSerial.print("F");
+    Node_Mcu_SoftSerial.print(data7, 3);
+    Node_Mcu_SoftSerial.print("G");
+    Node_Mcu_SoftSerial.print(data8, 2);
+    Node_Mcu_SoftSerial.print("H");
+    Node_Mcu_SoftSerial.print(data9);
+    Node_Mcu_SoftSerial.print("I");
+    Node_Mcu_SoftSerial.print(data10);
+    Node_Mcu_SoftSerial.print("J");
+    Node_Mcu_SoftSerial.print(data11);
+    Node_Mcu_SoftSerial.print("K");
+    Node_Mcu_SoftSerial.print(data12);
+    Node_Mcu_SoftSerial.print("L");
+    Node_Mcu_SoftSerial.print("\n");   
+
+    delay(500);
+
+}
