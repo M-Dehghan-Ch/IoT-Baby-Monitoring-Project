@@ -1,0 +1,13 @@
+unsigned long currentMillis;
+unsigned long previousmillis;
+
+bool myclock(){
+  currentMillis = millis();
+    if ( currentMillis - previousmillis >= 2000) {
+      previousmillis = currentMillis;
+        return true;
+    }
+    else{
+        return false;
+    }
+}
