@@ -1,0 +1,76 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial Arduino_SoftSerial(10,11);  //RX, TX
+
+char c;
+string dataIn;
+int8_t IndexOfA, IndexOfB, IndexOfC, IndexOfD, IndexOfE, IndexOfF,
+       IndexOfG, IndexOfH, IndexOfI, IndexOfJ, IndexOfK, IndexOfL;
+stirng data1, data2, data3, data4, data5, data6,
+       data7, data8, data9, data10, data11, data12;
+
+void setup(){
+    Serial.begin(57600);
+    Arduino_SoftSerial.begin(9600);
+}
+
+void loop(){
+    while (Arduino_SoftSerial.available() > 0){
+        c= Arduino_SoftSerial.read();
+        Serial.println("Data1 = " + data1);
+        Serial.println("Data2 = " + data2);
+        Serial.println("Data3 = " + data3);
+        Serial.println("Data4 = " + data4);
+        Serial.println("Data5 = " + data5);
+        Serial.println("Data6 = " + data6);
+        Serial.println("Data7 = " + data7);
+        Serial.println("Data8 = " + data8);
+        Serial.println("Data9 = " + data9);
+        Serial.println("Data10 = " + data10);
+        Serial.println("Data11 = " + data11);
+        Serial.println("Data12 = " + data12);
+        Serial.println("===============================");
+
+
+        if(c=='\n') {break;}
+        else {dataIn+=c;}
+    }
+
+    if (c=='n'){
+        Parse_the_Data();
+
+        c=0;
+        dataIn="";
+    }
+}
+
+///////////////////
+
+void Parse_the_Data(){
+
+    IndexOfA = dataIn.IndexOf("A");
+    IndexOfB = dataIn.IndexOf("B");
+    IndexOfC = dataIn.IndexOf("C");
+    IndexOfD = dataIn.IndexOf("D");
+    IndexOfE = dataIn.IndexOf("E");
+    IndexOfF = dataIn.IndexOf("F");
+    IndexOfG = dataIn.IndexOf("G");
+    IndexOfH = dataIn.IndexOf("H");
+    IndexOfI = dataIn.IndexOf("I");
+    IndexOfJ = dataIn.IndexOf("J");
+    IndexOfK = dataIn.IndexOf("K");
+    IndexOfL = dataIn.IndexOf("L");
+
+    data1  = dataIn.substring (0, indexofA);
+    data2  = dataIn.substring (indexofA+1, indexoB);
+    data3  = dataIn.substring (indexofB+1, indexoC);
+    data4  = dataIn.substring (indexofC+1, indexoD);
+    data5  = dataIn.substring (indexofD+1, indexoE);
+    data6  = dataIn.substring (indexofE+1, indexoF);
+    data7  = dataIn.substring (indexofF+1, indexoG);
+    data8  = dataIn.substring (indexofG+1, indexoH);
+    data9  = dataIn.substring (indexofH+1, indexoI);
+    data10 = dataIn.substring (indexofI+1, indexoJ);
+    data11 = dataIn.substring (indexofJ+1, indexoK);
+    data12 = dataIn.substring (indexofK+1, indexoL);
+}
