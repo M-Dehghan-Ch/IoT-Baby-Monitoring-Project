@@ -1,0 +1,13 @@
+#define sensorPin A0 // define pin A0 as sensorPin 
+int sensorValue = 0; // Value for storing water level
+
+void setup() {
+ Serial.begin(9600); 
+}
+ 
+void loop() {
+ sensorValue = analogRead(sensorPin); // reading pin A0 and store to sensorValue
+ Serial.print("Sensor = " ); 
+ Serial.println(sensorValue); 
+ delay(2000); 
+}
