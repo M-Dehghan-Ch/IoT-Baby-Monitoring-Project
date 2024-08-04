@@ -1,0 +1,36 @@
+#include "pca95xx.h"
+#include <Wire.h>  
+
+#define RELAY_ADDR 0x3F
+
+//relay pins
+#define r1 0X01 // relay channel 1 = 00000001
+#define r2 0x02 // relay channel 2 = 00000010
+#define r3 0x04 // relay channel 3 = 00000100
+#define r4 0x08 // relay channel 4 = 00001000
+
+uint8_t state = 0xFF;  // state of relay channels = 11111111
+
+void setup() {
+    Wire.begin();  //relay init
+    pca95xx_configure(RELAY_ADDR, PCA95XX_POL_DEFAULT_ALL, PCA95XX_OUT_ALL);
+    pca95xx_out(RELAY_ADDR, 0xFF); // turn off all relays
+
+    Serial.begin(9600);
+}
+
+void loop(){
+
+    state &= ~r1; // turn r1 on , state = 11111110
+    pca95xx_out(RELAY_ADDR, state);
+    delay(5000)
+    
+    state &= ~r2; // turn r2 on , state = 11111100
+    pca95xx_out(RELAY_ADDR, state);
+    delay(5000)
+ 
+
+    state |= r1; // turn r1 off , state = 11111101
+    pca95xx_out(RELAY_ADDR, state);
+    delay(5000)
+}
